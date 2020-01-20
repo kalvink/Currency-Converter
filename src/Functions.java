@@ -30,7 +30,7 @@ public class Functions {
 		getRequest();
 		System.out.println(json);
 
-		getRates(cfrom, cto);
+		getRates(cfrom, cto, money);
 
 		result = money / rate2;
 
@@ -39,7 +39,7 @@ public class Functions {
 
 	}
 
-	public static void getRates(int cfrom, int cto) {
+	public static void getRates(int cfrom, int cto, double tempmoney) {
 
 		JsonElement root = new JsonParser().parse(json);
 
@@ -51,9 +51,13 @@ public class Functions {
 
 		// usa
 		else if (cfrom == 1) {
+			
+			
 			String USD = root.getAsJsonObject().get("rates").getAsJsonObject().get("USD").getAsString();
-			rate = 2 - Double.parseDouble(USD);
-			System.out.println(rate);
+			rate = Double.parseDouble(USD);
+			tempmoney = tempmoney * rate;
+			
+			System.out.println(tempmoney);
 		}
 
 		// great britain
@@ -92,6 +96,10 @@ public class Functions {
 			rate2 = Double.parseDouble(GBP);
 			System.out.println(rate2);
 			finalCurrencySign = "£";
+			
+//			tempmoney = tempmoney / rate2;
+//			System.out.println(tempmoney);
+
 		}
 		// china
 		else if (cto == 3) {
