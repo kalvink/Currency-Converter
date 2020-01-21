@@ -15,10 +15,10 @@ public class Functions {
 
 	// Sends a GET Request to a free exchange rate api and retrieves the updated
 	// currency rates.
-	public static void getRequest() throws Exception {
+	public static void getRequest(String from, String to) throws Exception {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create("https://api.exchangeratesapi.io/latest?base=CAD&symbols=USD,GBP,CNY")).build();
+				.uri(URI.create("https://api.exchangeratesapi.io/latest?base=" + from + "&symbols=" + to + "")).build();
 
 		HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
@@ -27,89 +27,53 @@ public class Functions {
 
 	//
 	public static double convertTo(int cfrom, int cto, double money) throws Exception {
-		getRequest();
+		String base = null, to = null;
+		if (cfrom == 0) {
+			base = "CAD";
+		} else if (cfrom == 1) {
+			base = "USD";
+		} else if (cfrom == 2) {
+			base = "GBP";
+		} else if (cfrom == 3) {
+			base = "CNY";
+		}
+
+		if (cto == 0) {
+			to = "CAD";
+		} else if (cto == 1) {
+			to = "USD";
+		} else if (cto == 2) {
+			to = "GBP";
+		} else if (cto == 3) {
+			to = "CNY";
+		}
+
+		getRequest(base, to);
+		// delete later
 		System.out.println(json);
+		getRates(to);
 
-		getRates(cfrom, cto, money);
-
-		result = money / rate2;
+		result = money * Double.parseDouble(getRates(to));
 
 		System.out.println(result);
 		return result;
 
 	}
 
-	public static void getRates(int cfrom, int cto, double tempmoney) {
-
+	public static String getRates(String convertToCountry) {
+		String convertRate = null;
 		JsonElement root = new JsonParser().parse(json);
 
-		// canada
-		if (cfrom == 0) {
-			rate = 1.00;
-
+		if (convertToCountry == "CAD") {
+			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
+		} else if (convertToCountry == "USD") {
+			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
+		} else if (convertToCountry == "GBP") {
+			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
+		} else if (convertToCountry == "CNY") {
+			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
 		}
-
-		// usa
-		else if (cfrom == 1) {
-			
-			
-			String USD = root.getAsJsonObject().get("rates").getAsJsonObject().get("USD").getAsString();
-			rate = Double.parseDouble(USD);
-			tempmoney = tempmoney * rate;
-			
-			System.out.println(tempmoney);
-		}
-
-		// great britain
-		else if (cfrom == 2) {
-			String GBP = root.getAsJsonObject().get("rates").getAsJsonObject().get("GBP").getAsString();
-			rate = 2 - Double.parseDouble(GBP);
-			System.out.println(rate);
-
-		}
-		// china
-		else if (cfrom == 3) {
-			String CNY = root.getAsJsonObject().get("rates").getAsJsonObject().get("CNY").getAsString();
-			rate = 2 - Double.parseDouble(CNY);
-			System.out.println(rate);
-
-		}
-
-		if (cto == 0) {
-			rate2 = 1.00;
-			finalCurrencySign = "$";
-
-		}
-
-		// usa
-		else if (cto == 1) {
-			String USD = root.getAsJsonObject().get("rates").getAsJsonObject().get("USD").getAsString();
-			rate2 = Double.parseDouble(USD);
-			System.out.println(rate2);
-			finalCurrencySign = "$";
-
-		}
-
-		// great britain
-		else if (cto == 2) {
-			String GBP = root.getAsJsonObject().get("rates").getAsJsonObject().get("GBP").getAsString();
-			rate2 = Double.parseDouble(GBP);
-			System.out.println(rate2);
-			finalCurrencySign = "£";
-			
-//			tempmoney = tempmoney / rate2;
-//			System.out.println(tempmoney);
-
-		}
-		// china
-		else if (cto == 3) {
-			String CNY = root.getAsJsonObject().get("rates").getAsJsonObject().get("CNY").getAsString();
-			rate2 = Double.parseDouble(CNY);
-			System.out.println(rate2);
-			finalCurrencySign = "¥";
-
-		}
-
+		return convertRate;
 	}
 
 }

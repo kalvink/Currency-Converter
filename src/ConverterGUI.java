@@ -96,8 +96,15 @@ public class ConverterGUI extends Functions {
 		panel.add(txtTwo);
 		txtTwo.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTwo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtTwo.setText("$1.00");
 		txtTwo.setColumns(10);
+		try {
+			convertedResult = Functions.convertTo(0, 1, 1.00);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		txtTwo.setText(Functions.finalCurrencySign + String.format("%.2f", convertedResult));
+
 
 		// Convert button
 		JButton convertBTN = new JButton("CONVERT");
