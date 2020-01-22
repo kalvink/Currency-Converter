@@ -1,5 +1,6 @@
 # CurrencyConverter
 Basic Currency Converter coded in Java by Kalvin Kao
+Calls an API to get the updated exchange rates and then converts it at the click of a button, up to 5 different currencies to select from.
 
 Functionality
 - Convert 5 different currencies
