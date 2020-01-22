@@ -1,17 +1,11 @@
 import java.awt.BorderLayout;
 
 import javax.swing.*;
-import java.awt.GridLayout;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.Component;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import java.awt.Window.Type;
-import javax.swing.GroupLayout.Alignment;
 
 //Currency Converter by Kalvin Kao
 
@@ -59,7 +53,7 @@ public class ConverterGUI extends Functions {
 		txtOne.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtOne.setColumns(10);
 
-		JComboBox convertingFrom = new JComboBox();
+		JComboBox<String> convertingFrom = new JComboBox<String>();
 		convertingFrom.setBounds(232, 0, 231, 59);
 		panel_1.add(convertingFrom);
 
@@ -75,7 +69,7 @@ public class ConverterGUI extends Functions {
 		panel.setBounds(20, 276, 463, 68);
 		frameConverter.getContentPane().add(panel);
 
-		JComboBox convertingTo = new JComboBox();
+		JComboBox<String> convertingTo = new JComboBox<String>();
 		convertingTo.setBounds(232, 0, 231, 59);
 		panel.add(convertingTo);
 

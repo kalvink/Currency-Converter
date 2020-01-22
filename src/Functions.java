@@ -83,6 +83,7 @@ public class Functions {
 
 	public static String getRates(String convertToCountry) {
 		String convertRate = null;
+		@SuppressWarnings("deprecation")
 		JsonElement root = new JsonParser().parse(json);
 
 		if (convertToCountry == "CAD") {
