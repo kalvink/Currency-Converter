@@ -10,8 +10,10 @@ import com.google.gson.JsonParser;
 public class Functions {
 	static double rate, rate2;
 	static String json;
+	static String beforeCurrencySign = "$";
 	static String finalCurrencySign = "$";
 	static double result;
+	static String base = null, to = null;
 
 	// Sends a GET Request to a free exchange rate api and retrieves the updated
 	// currency rates.
@@ -27,25 +29,44 @@ public class Functions {
 
 	//
 	public static double convertTo(int cfrom, int cto, double money) throws Exception {
-		String base = null, to = null;
 		if (cfrom == 0) {
 			base = "CAD";
+			beforeCurrencySign = "$";
 		} else if (cfrom == 1) {
 			base = "USD";
+			beforeCurrencySign = "$";
+
 		} else if (cfrom == 2) {
 			base = "GBP";
+			beforeCurrencySign = "£";
+
 		} else if (cfrom == 3) {
 			base = "CNY";
+			beforeCurrencySign = "¥";
+
+		} else if (cfrom == 4) {
+			base = "JPY";
+			beforeCurrencySign = "¥";
 		}
 
 		if (cto == 0) {
 			to = "CAD";
+			finalCurrencySign = "$";
+
 		} else if (cto == 1) {
 			to = "USD";
+			finalCurrencySign = "$";
+
 		} else if (cto == 2) {
 			to = "GBP";
+			finalCurrencySign = "£";
+
 		} else if (cto == 3) {
 			to = "CNY";
+			finalCurrencySign = "¥";
+		} else if (cto == 4) {
+			to = "JPY";
+			finalCurrencySign = "¥";
 		}
 
 		getRequest(base, to);
@@ -71,6 +92,8 @@ public class Functions {
 		} else if (convertToCountry == "GBP") {
 			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
 		} else if (convertToCountry == "CNY") {
+			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
+		} else if (convertToCountry == "JPY") {
 			convertRate = root.getAsJsonObject().get("rates").getAsJsonObject().get(convertToCountry).getAsString();
 		}
 		return convertRate;

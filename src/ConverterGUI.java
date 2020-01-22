@@ -17,8 +17,7 @@ import javax.swing.GroupLayout.Alignment;
 
 public class ConverterGUI extends Functions {
 	private static JTextField txtOne, txtTwo;
-	static String Currency[] = { "Canadian Dollar", "United States Dollar", "Pound Sterling", "Chinese Yuan",
-			"Bitcoin" };
+	static String Currency[] = { "Canadian Dollar", "United States Dollar", "Pound Sterling", "Chinese Yuan", "Japanese Yen" };
 	static int conFrom = 0;
 	static int conTo = 1;
 	static double money1 = 1.00;
@@ -105,7 +104,6 @@ public class ConverterGUI extends Functions {
 		}
 		txtTwo.setText(Functions.finalCurrencySign + String.format("%.2f", convertedResult));
 
-
 		// Convert button
 		JButton convertBTN = new JButton("CONVERT");
 		convertBTN.setBounds(20, 355, 463, 124);
@@ -122,7 +120,6 @@ public class ConverterGUI extends Functions {
 					e2.printStackTrace();
 				}
 				txtTwo.setText(Functions.finalCurrencySign + String.format("%.2f", convertedResult));
-
 			}
 		});
 		convertBTN.setFont(new Font("Arial", Font.BOLD, 30));
