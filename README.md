@@ -2,14 +2,12 @@
 Basic Currency Converter coded in Java by Kalvin Kao
 
 Functionality
-- Addition
-- Subtraction
-- Multiplication
-- Division
-- Equate
-- Decimals
-- Clear all
-- Back space
+- Convert 5 different currencies
+  - Canadian dollar
+  - United States dollar
+  - Great Britain Pound
+  - Chinese Yuan
+  - Japanese Yen
 
 Tools used
 - Eclipse
@@ -22,5 +20,7 @@ Libraries
 - Google GSON
 
 ![Currency Converter1](https://i.imgur.com/pNYAoWR.png)
+
+
 ![Currency Converter2](https://i.imgur.com/je6zxVb.png)
 
