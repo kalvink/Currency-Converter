@@ -22,6 +22,7 @@ Libraries
 
 ![Currency Converter1](https://i.imgur.com/pNYAoWR.png)
 
+![Currency Converter2](https://i.imgur.com/1MvviZz.png)
 
-![Currency Converter2](https://i.imgur.com/je6zxVb.png)
+![Currency Converter3](https://i.imgur.com/je6zxVb.png)
 
